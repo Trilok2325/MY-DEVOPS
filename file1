@@ -1,3 +1,4 @@
+##This Java Program to Add Two Binary Strings
 Algorithm
 Convert both binary strings to decimal using Integer.parseInt(str, 2).
 Add the decimal values.
