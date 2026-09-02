@@ -1,4 +1,5 @@
 #Java Program to Find if a Given Year is a Leap Year
+#Leap Year contains 366 days, which comes once every four years. In this article, we will learn how to write the leap year program in Java.
 import java.io.*;
 
 public class GeeksforGeeks {
