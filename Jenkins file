@@ -55,6 +55,6 @@ public class GeeksforGeeks {
     }
 }
 
-# output
+# expected output
 #2000 : Leap-year
 #2002 : Non Leap-year
