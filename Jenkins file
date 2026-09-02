@@ -54,3 +54,7 @@ public class GeeksforGeeks {
         isLeapYear(2002);
     }
 }
+
+# output
+#2000 : Leap-year
+#2002 : Non Leap-year
