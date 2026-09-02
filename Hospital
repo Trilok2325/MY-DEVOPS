@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>St. Mercy · Hospital</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: #f4f9fe;
+      color: #0b2b3d;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---- header / logo ---- */
+    .hospital-header {
+      background: white;
+      box-shadow: 0 4px 12px rgba(0, 20, 30, 0.06);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      background: #0a6e7a;
+      color: white;
+      width: 52px;
+      height: 52px;
+      border-radius: 30px 12px 30px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 6px 14px rgba(10, 110, 122, 0.25);
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text span {
+      color: #0a6e7a;
+      font-weight: 800;
+    }
+
+    .logo-sub {
+      font-size: 13px;
+      color: #4a6a78;
+      font-weight: 500;
+      margin-top: 2px;
+      letter-spacing: 0.3px;
+    }
+
+    /* navigation */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1d3e4e;
+      font-weight: 500;
+      font-size: 15px;
+      transition: color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links a i {
+      font-size: 15px;
+      color: #0a6e7a;
+    }
+
+    .nav-links a:hover {
+      color: #0a6e7a;
+    }
+
+    .appt-btn {
+      background: #0a6e7a;
+      color: white !important;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.2s;
+      box-shadow: 0 4px 10px rgba(10, 110, 122, 0.25);
+    }
+
+    .appt-btn i {
+      color: white !important;
+    }
+
+    .appt-btn:hover {
+      background: #08545e;
+      transform: scale(1.02);
+    }
+
+    /* mobile toggle */
+    .mobile-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      font-size: 26px;
+      color: #0b2b3d;
+      cursor: pointer;
+    }
+
+    /* ---- hero ---- */
+    .hero {
+      background: linear-gradient(135deg, #e6f3f8 0%, #d4eaf2 100%);
+      border-radius: 32px;
+      margin: 28px 0 36px;
+      padding: 48px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .hero-content {
+      flex: 1 1 320px;
+    }
+
+    .hero-content h1 {
+      font-size: 40px;
+      font-weight: 700;
+      color: #04303d;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      color: #245a6b;
+      max-width: 460px;
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-primary {
+      background: #0a6e7a;
+      border: none;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(10, 110, 122, 0.25);
+      transition: 0.2s;
+    }
+
+    .btn-primary i {
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #08545e;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #0a6e7a;
+      color: #0a6e7a;
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-outline i {
+      color: #0a6e7a;
+    }
+
+    .btn-outline:hover {
+      background: #0a6e7a10;
+    }
+
+    .hero-image {
+      flex: 1 1 240px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 28px;
+      box-shadow: 0 20px 40px rgba(0, 30, 40, 0.15);
+      object-fit: cover;
+      width: 340px;
+      height: 240px;
+    }
+
+    /* ---- quick stats ---- */
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px 50px;
+      background: white;
+      border-radius: 32px;
+      padding: 28px 36px;
+      margin-bottom: 40px;
+      box-shadow: 0 6px 20px rgba(0, 20, 30, 0.04);
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .stat-item i {
+      font-size: 30px;
+      color: #0a6e7a;
+      width: 40px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-weight: 700;
+      font-size: 26px;
+      color: #04303d;
+    }
+
+    .stat-label {
+      color: #3d6372;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* ---- services / departments ---- */
+    .section-title {
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #04303d;
+    }
+
+    .section-sub {
+      color: #3d6372;
+      margin-bottom: 28px;
+      font-size: 17px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 22px;
+      margin: 16px 0 48px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 24px 16px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0, 20, 30, 0.03);
+      transition: all 0.2s;
+      border: 1px solid #eaf3f9;
+    }
+
+    .service-card i {
+      font-size: 34px;
+      color: #0a6e7a;
+      background: #e3f1f5;
+      padding: 14px;
+      border-radius: 50%;
+      margin-bottom: 14px;
+    }
+
+    .service-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #04303d;
+    }
+
+    .service-card p {
+      font-size: 14px;
+      color: #4d6f7e;
+      margin-top: 6px;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: #0a6e7a30;
+      box-shadow: 0 16px 32px rgba(10, 110, 122, 0.06);
+    }
+
+    /* ---- testimonials ---- */
+    .testimonial-section {
+      background: white;
+      border-radius: 32px;
+      padding: 32px 28px;
+      margin: 32px 0 40px;
+      box-shadow: 0 6px 20px rgba(0, 20, 30, 0.02);
+    }
+
+    .testimonial-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 16px;
+    }
+
+    .testimonial-card {
+      flex: 1 1 220px;
+      background: #f7fbfd;
+      border-radius: 20px;
+      padding: 22px 20px;
+    }
+
+    .testimonial-card .stars {
+      color: #f5b342;
+      letter-spacing: 2px;
+      font-size: 18px;
+    }
+
+    .testimonial-card p {
+      font-style: italic;
+      color: #1e4353;
+      margin: 10px 0 12px;
+      font-size: 15px;
+    }
+
+    .patient-name {
+      font-weight: 600;
+      color: #04303d;
+    }
+
+    .patient-detail {
+      font-size: 13px;
+      color: #4d6f7e;
+    }
+
+    /* ---- footer ---- */
+    .footer {
+      background: #04303d;
+      color: #d4eaf2;
+      border-radius: 32px 32px 0 0;
+      padding: 40px 32px 28px;
+      margin-top: 40px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-logo .logo-icon {
+      background: #d4eaf2;
+      color: #04303d;
+      width: 44px;
+      height: 44px;
+      font-size: 22px;
+    }
+
+    .footer-logo span {
+      font-weight: 700;
+      font-size: 22px;
+      color: white;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 36px;
+    }
+
+    .footer-links a {
+      color: #b6d2df;
+      text-decoration: none;
+      font-size: 15px;
+      display: block;
+      margin: 4px 0;
+      transition: 0.1s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-copy {
+      text-align: center;
+      border-top: 1px solid #1d4b5a;
+      padding-top: 20px;
+      margin-top: 28px;
+      font-size: 14px;
+      color: #92b4c2;
+    }
+
+    /* ---- responsive ---- */
+    @media (max-width: 830px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: white;
+        padding: 18px 24px;
+        border-radius: 24px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        width: 100%;
+        gap: 14px;
+        margin-top: 12px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .header-inner {
+        flex-wrap: wrap;
+      }
+
+      .appt-btn {
+        align-self: flex-start;
+      }
+
+      .hero {
+        padding: 28px 20px;
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .hero-content h1 {
+        font-size: 32px;
+      }
+
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: auto;
+      }
+
+      .logo-text {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hospital-header">
+    <div class="container header-inner">
+      <!-- Logo block -->
+      <div class="logo-block">
+        <div class="logo-icon">
+          <i class="fas fa-heartbeat"></i>
+        </div>
+        <div>
+          <div class="logo-text">St.<span>Mercy</span></div>
+          <div class="logo-sub"><i class="fas fa-map-pin" style="margin-right: 4px;"></i> Medical Center</div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#services"><i class="fas fa-stethoscope"></i> Services</a></li>
+        <li><a href="#"><i class="fas fa-user-md"></i> Doctors</a></li>
+        <li><a href="#"><i class="fas fa-phone-alt"></i> Contact</a></li>
+        <li><a href="#" class="appt-btn"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+      </ul>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Your health, <br>our priority.</h1>
+        <p>Compassionate care, advanced medicine, and a team that puts you first.</p>
+        <div class="hero-actions">
+          <button class="btn-primary"><i class="fas fa-phone"></i> Emergency</button>
+          <button class="btn-outline"><i class="fas fa-calendar-plus"></i> Book visit</button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80" alt="Modern hospital building" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-item"><i class="fas fa-user-md"></i><div><span class="stat-number">120+</span><div class="stat-label">Doctors</div></div></div>
+      <div class="stat-item"><i class="fas fa-hospital"></i><div><span class="stat-number">24/7</span><div class="stat-label">Emergency</div></div></div>
+      <div class="stat-item"><i class="fas fa-smile"></i><div><span class="stat-number">98%</span><div class="stat-label">Satisfaction</div></div></div>
+      <div class="stat-item"><i class="fas fa-map-marker-alt"></i><div><span class="stat-number">5</span><div class="stat-label">Locations</div></div></div>
+    </div>
+
+    <!-- Services -->
+    <section id="services">
+      <h2 class="section-title">Medical departments</h2>
+      <p class="section-sub">Expert care across a wide range of specialties.</p>
+      <div class="service-grid">
+        <div class="service-card"><i class="fas fa-heart"></i><h4>Cardiology</h4><p>Heart & vascular</p></div>
+        <div class="service-card"><i class="fas fa-brain"></i><h4>Neurology</h4><p>Brain & nerves</p></div>
+        <div class="service-card"><i class="fas fa-bone"></i><h4>Orthopedics</h4><p>Bones & joints</p></div>
+        <div class="service-card"><i class="fas fa-child"></i><h4>Pediatrics</h4><p>Child health</p></div>
+        <div class="service-card"><i class="fas fa-female"></i><h4>Gynecology</h4><p>Women's health</p></div>
+        <div class="service-card"><i class="fas fa-eye"></i><h4>Ophthalmology</h4><p>Eye care</p></div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonial-section">
+      <h2 class="section-title" style="font-size: 26px;">Patient stories</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>“The care I received was outstanding. The nurses and doctors truly listened.”</p>
+          <div class="patient-name">— Eleanor R.</div>
+          <div class="patient-detail">Cardiology patient</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>“Clean, modern facility and minimal waiting time. Highly recommend.”</p>
+          <div class="patient-name">— James K.</div>
+          <div class="patient-detail">Orthopedic surgery</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>“They made my child feel safe and comfortable. Wonderful pediatric team.”</p>
+          <div class="patient-name">— Maria & Lucas</div>
+          <div class="patient-detail">Pediatrics</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-logo">
+          <div class="logo-icon"><i class="fas fa-heartbeat"></i></div>
+          <span>St.Mercy</span>
+        </div>
+        <div style="margin-top: 12px; max-width: 260px; color: #b6d2df; font-size: 14px;">
+          <i class="fas fa-map-marker-alt" style="margin-right: 6px;"></i> 2100 Health Ave, Care City
+        </div>
+        <div style="color: #b6d2df; font-size: 14px; margin-top: 6px;">
+          <i class="fas fa-phone-alt"></i> +1 (800) 555‑0199
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div><a href="#">About us</a><a href="#">Careers</a><a href="#">Press</a></div>
+        <div><a href="#">Patient portal</a><a href="#">Insurance</a><a href="#">Medical records</a></div>
+        <div><a href="#">Contact</a><a href="#">FAQs</a><a href="#">Privacy</a></div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; 2026 St. Mercy Medical Center. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- small JS for mobile menu toggle -->
+  <script>
+    (function() {
+      const toggle = document.getElementById('mobileToggle');
+      const nav = document.getElementById('navLinks');
+
+      toggle.addEventListener('click', function() {
+        nav.classList.toggle('open');
+        // icon swap
+        const icon = toggle.querySelector('i');
+        if (nav.classList.contains('open')) {
+          icon.className = 'fas fa-times';
+        } else {
+          icon.className = 'fas fa-bars';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
